@@ -525,8 +525,8 @@ async function fluid({
     });
   }
 
-  const filteredSizes = fluidSizes.filter(size => size < (fixedDimension === `maxWidth` ? width : height));
   options.excludeOriginal = options.excludeOriginal === true;
+  const filteredSizes = options.excludeOriginal ? fluidSizes.filter(size => size <= (fixedDimension === `maxWidth` ? width : height)) : fluidSizes.filter(size => size < (fixedDimension === `maxWidth` ? width : height));
 
   if (!options.excludeOriginal) {
     // Add the original image to ensure the largest image possible
